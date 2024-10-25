@@ -10,12 +10,7 @@ public class PlayerInput : MonoBehaviour
     public static PlayerInput Instance { get; private set; }
     private void Awake()
     {
-    
-
         characterController = new PlayerController();
         characterController.CharacterMovement.Enable();
-
     }
-
-
 }
