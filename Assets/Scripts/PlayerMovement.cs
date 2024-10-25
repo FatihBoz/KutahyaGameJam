@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem;
@@ -19,15 +20,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-
-
         rb = GetComponent<Rigidbody>();
-
     }
 
     private void Start()
     {
-        PlayerInput.Instance.characterController.CharacterMovement.Jump.performed += Jump;
+
+        PlayerInput.Instance.GetPlayerController().CharacterMovement.Jump.performed += Jump;
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -48,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        Vector2 moveDirection = movementSpeedMultiplier * PlayerInput.Instance.characterController.CharacterMovement.Movement.ReadValue<Vector2>().normalized;
+        Vector2 moveDirection = movementSpeedMultiplier * PlayerInput.Instance.GetPlayerController().CharacterMovement.Movement.ReadValue<Vector2>().normalized;
 
         rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
     }
@@ -61,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
+
+
     }
 
 
