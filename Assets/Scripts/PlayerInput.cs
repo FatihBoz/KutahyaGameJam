@@ -1,25 +1,34 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-
+    public static PlayerInput Instance;
+    public Action OnJumped;
     private PlayerController characterController;
-    public static PlayerInput Instance { get; private set; }
 
 
     private void Awake()
     {
-   
         characterController = new PlayerController();
         characterController.CharacterMovement.Enable();
 
         Instance = this;
-
     }
 
-    public PlayerController GetPlayerController() => characterController;
+    private void Start()
+    {
+        characterController.CharacterMovement.Jump.performed += Jump;
+    }
 
-
+    private void Jump(InputAction.CallbackContext context)
+    {
+        OnJumped?.Invoke();
+    }
+    public Vector2 GetMoveDirection()
+    {
+        return characterController.CharacterMovement.Movement.ReadValue<Vector2>().normalized;
+    }
 }

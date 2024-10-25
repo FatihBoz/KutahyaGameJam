@@ -5,9 +5,10 @@ using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent (typeof(PlayerInput))]
 public class PlayerMovement : MonoBehaviour
 {
-
+    private bool canJump;
     private Rigidbody rb;
     [SerializeField] private float movementSpeedMultiplier;
     [SerializeField] private float jumpSpeedMultiplier;
@@ -23,31 +24,26 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Start()
+    private void Jump()
     {
-
-        PlayerInput.Instance.GetPlayerController().CharacterMovement.Jump.performed += Jump;
-    }
-
-    private void Jump(InputAction.CallbackContext context)
-    {
-        if (IsGrounded())
+        if(CheckGround())
         {
             rb.AddForce(jumpSpeedMultiplier * Vector3.up, ForceMode.Impulse);
         }
     }
 
 
-    private bool IsGrounded()
+    private bool CheckGround()
     {
         Ray ray = new(transform.position, Vector3.down);
         return Physics.Raycast(ray, rayLength, groundLayer);
+
     }
 
 
     void Move()
     {
-        Vector2 moveDirection = movementSpeedMultiplier * PlayerInput.Instance.GetPlayerController().CharacterMovement.Movement.ReadValue<Vector2>().normalized;
+        Vector2 moveDirection = movementSpeedMultiplier * PlayerInput.Instance.GetMoveDirection();
 
         rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
     }
@@ -58,10 +54,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.linearVelocity.y < 0)
         {
-            rb.linearVelocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            rb.linearVelocity += (fallMultiplier - 1) * Physics.gravity.y * Time.deltaTime * Vector3.up;
         }
+    }
 
+    private void OnEnable()
+    {
+        PlayerInput.Instance.OnJumped += Jump;
+    }
 
+    private void OnDisable()
+    {
+        PlayerInput.Instance.OnJumped -= Jump;
     }
 
 
