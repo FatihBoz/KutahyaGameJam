@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    public PlayerController characterController;
 
     private Rigidbody rb;
     [SerializeField] private float movementSpeedMultiplier;
@@ -21,8 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        characterController = new PlayerController();
-        characterController.CharacterMovement.Enable();
+
 
         rb = GetComponent<Rigidbody>();
 
@@ -30,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        characterController.CharacterMovement.Jump.performed += Jump;
-       
+
+        PlayerInput.Instance.characterController.CharacterMovement.Jump.performed += Jump;
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -52,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        Vector2 moveDirection = movementSpeedMultiplier * characterController.CharacterMovement.Movement.ReadValue<Vector2>().normalized;
+        Vector2 moveDirection = movementSpeedMultiplier * PlayerInput.Instance.characterController.CharacterMovement.Movement.ReadValue<Vector2>().normalized;
 
         rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
     }
