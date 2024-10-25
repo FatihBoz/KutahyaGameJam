@@ -44,6 +44,15 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""36d6450d-8602-437b-9f80-d6e5201fba2c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,17 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26afbef0-1bd8-4c59-9da4-b3008be80a10"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Character"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -134,6 +154,7 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
         m_CharacterMovement = asset.FindActionMap("CharacterMovement", throwIfNotFound: true);
         m_CharacterMovement_Movement = m_CharacterMovement.FindAction("Movement", throwIfNotFound: true);
         m_CharacterMovement_Jump = m_CharacterMovement.FindAction("Jump", throwIfNotFound: true);
+        m_CharacterMovement_Interact = m_CharacterMovement.FindAction("Interact", throwIfNotFound: true);
     }
 
     ~@PlayerController()
@@ -202,12 +223,14 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     private List<ICharacterMovementActions> m_CharacterMovementActionsCallbackInterfaces = new List<ICharacterMovementActions>();
     private readonly InputAction m_CharacterMovement_Movement;
     private readonly InputAction m_CharacterMovement_Jump;
+    private readonly InputAction m_CharacterMovement_Interact;
     public struct CharacterMovementActions
     {
         private @PlayerController m_Wrapper;
         public CharacterMovementActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_CharacterMovement_Movement;
         public InputAction @Jump => m_Wrapper.m_CharacterMovement_Jump;
+        public InputAction @Interact => m_Wrapper.m_CharacterMovement_Interact;
         public InputActionMap Get() { return m_Wrapper.m_CharacterMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -223,6 +246,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(ICharacterMovementActions instance)
@@ -233,6 +259,9 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(ICharacterMovementActions instance)
@@ -263,5 +292,6 @@ public partial class @PlayerController: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
