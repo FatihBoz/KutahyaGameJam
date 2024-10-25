@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem;
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         characterController.CharacterMovement.Jump.performed += Jump;
+       
     }
 
     private void Jump(InputAction.CallbackContext context)
