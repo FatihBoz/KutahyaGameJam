@@ -33,23 +33,7 @@ public class SpearTrap : MovingTrap
         ActivateTrap();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && activationCoroutine == null)
-        {
-            activationCoroutine = StartCoroutine(DelayedActivation());
-            print("enter");
-        }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            print("exit");
-            ResetTrap();
-        }
-    }
 
     private void ResetTrap()
     {
@@ -58,6 +42,22 @@ public class SpearTrap : MovingTrap
         {
             StopCoroutine(activationCoroutine);
             activationCoroutine = null;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && activationCoroutine == null)
+        {
+            activationCoroutine = StartCoroutine(DelayedActivation());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ResetTrap();
         }
     }
 
