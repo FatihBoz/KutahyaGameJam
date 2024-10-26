@@ -31,6 +31,7 @@ public class Rock : MonoBehaviour
             time=Time.time;
         }
     }
+    
     public void SetThrowDirection(Vector3 throwDirection)
     {
         this.throwDirection=throwDirection;

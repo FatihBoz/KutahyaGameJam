@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -12,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float rayLength = 0.5f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float gravityScale;
+
 
     private PlayerInteract playerInteract;
     private Rigidbody rb;
@@ -36,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Ray ray = new(transform.position, Vector3.down);
         return Physics.Raycast(ray, rayLength, groundLayer);
-
     }
 
 
@@ -55,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Vector3 gravity = Physics.gravity * gravityScale;
+        rb.AddForce(gravity,ForceMode.Acceleration);
         Move();
 
         if (rb.linearVelocity.y < 0)
