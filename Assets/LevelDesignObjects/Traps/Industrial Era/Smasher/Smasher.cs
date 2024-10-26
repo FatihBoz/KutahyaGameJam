@@ -19,8 +19,6 @@ public class Smasher : MovingTrap
         }
 
         base.Update();
-
-
     }
 
     private void OnDrawGizmos()
@@ -39,9 +37,8 @@ public class Smasher : MovingTrap
     protected override IEnumerator ForwardMove(Vector3 targetPos)
     {
         canSmash = true;
-        idle = false;
-        float timeElapsed = 0f;
 
+        float timeElapsed = 0f;
         while (timeElapsed < actionDuration)
         {
             transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed / actionDuration);
