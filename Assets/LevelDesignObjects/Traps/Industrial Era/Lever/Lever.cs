@@ -35,6 +35,7 @@ public class Lever : MonoBehaviour
             {
                 obj.SetActive(false);
             }
+            text.gameObject.SetActive(false);
         }
     }
 
