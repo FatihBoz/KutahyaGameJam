@@ -3,14 +3,17 @@ using UnityEngine;
 
 public class MovingTrap : MonoBehaviour
 {
-    [SerializeField] protected float timeBetweenForwardBackwardMoves;
-    [SerializeField] protected float forwardMoveDuration;
+    [SerializeField] protected float timeBetweenActions;
+    [SerializeField] protected float actionDuration;
     [SerializeField] protected float displacementAmount;
-    [SerializeField] protected float waitingTimeAfterForwardMove;
+    [SerializeField] protected float waitingTimeAfterPush;
+    [SerializeField] protected float returnTimeMultiplier;
 
 
     protected float elapsedTimeAfterFirstMove = 0f;
     protected Vector3 startPos;
+    protected bool isReturning;
+    protected float elapsedTimeAfterAction = 0f;
 
     private void Start()
     {
@@ -22,9 +25,9 @@ public class MovingTrap : MonoBehaviour
         float timeElapsed = 0f;
 
 
-        while (timeElapsed < forwardMoveDuration)
+        while (timeElapsed < actionDuration)
         {
-            transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed / forwardMoveDuration);
+            transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed / actionDuration);
             timeElapsed += Time.deltaTime;
 
             yield return null;
@@ -36,10 +39,10 @@ public class MovingTrap : MonoBehaviour
 
     protected virtual IEnumerator ReturnToDefault(Vector3 targetPos)
     {
-        yield return new WaitForSeconds(waitingTimeAfterForwardMove);
-
+        yield return new WaitForSeconds(waitingTimeAfterPush);
+        isReturning = true;
         float timeElapsed = 0f;
-        float returnDuration = forwardMoveDuration * 6;
+        float returnDuration = actionDuration * returnTimeMultiplier;
 
         while (timeElapsed < returnDuration)
         {
@@ -47,6 +50,7 @@ public class MovingTrap : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+        isReturning = false;
 
     }
 
