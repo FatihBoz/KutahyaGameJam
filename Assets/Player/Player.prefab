@@ -36,7 +36,8 @@ Transform:
   m_LocalPosition: {x: 7.6, y: 4.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2130513490303434307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6733447295845311047
@@ -100,7 +101,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860685713158831636}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 40
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -114,7 +115,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
@@ -132,12 +133,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeedMultiplier: 10
-  jumpSpeedMultiplier: 75
+  jumpSpeedMultiplier: 500
   fallMultiplier: 2.5
   rayLength: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  gravityScale: 3
+  groundCheckTransform: {fileID: 2130513490303434307}
+  groundCheckRadius: 0.2
 --- !u!114 &6507558925729194407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +188,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860685713158831636}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 17eb6fa4984abff42af146da3341e9e7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -198,3 +202,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0346456, y: 0.41817704, z: 1.7877629}
   m_Center: {x: 0, y: -0.014747705, z: 0.89660466}
+--- !u!1 &4651501249509053019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130513490303434307}
+  m_Layer: 0
+  m_Name: groundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2130513490303434307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4651501249509053019}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8177157980445132203}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

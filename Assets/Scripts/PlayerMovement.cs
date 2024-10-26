@@ -16,6 +16,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float gravityScale;
 
 
+[SerializeField]
+    private Transform groundCheckTransform;
+[SerializeField]
+    private float groundCheckRadius;
+
+
+
     private PlayerInteract playerInteract;
     private Rigidbody rb;
 
@@ -24,22 +31,20 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerInteract= GetComponent<PlayerInteract>();
     }
-
     private void Jump()
     {
         print(CheckGround());
         if(CheckGround())
         {
+
             rb.AddForce(jumpSpeedMultiplier * Vector3.up, ForceMode.Impulse);
         }
     }
 
-
     private bool CheckGround()
     {
-        Ray ray = new(transform.position, Vector3.down);
-        return Physics.Raycast(ray, rayLength, groundLayer);
-    }
+        return Physics.CheckSphere(groundCheckTransform.position,groundCheckRadius,groundLayer);
+    } 
 
 
     void Move()
@@ -51,18 +56,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector2 moveDirection = movementSpeedMultiplier * inputMoveDirection;
-
+ 
         rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
 
         Vector3 movement = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
-        if (movement != Vector3.zero)
+        if (movement.x!=0 || movement.z!=0)
         {
-            //transform.forward = new Vector3(movement.x, 0, movement.z); // Hareket yönüne göre rotasyon ayarla
-
+            //transform.forward = new Vector3(movement.x, 0, movement.z); // Hareket yï¿½nï¿½ne gï¿½re rotasyon ayarla
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movement.x, 0, movement.z));
             transform.rotation = Quaternion.Euler(-90, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
         }
-
         rb.linearVelocity = movement;
     }
 
@@ -81,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        transform.rotation = Quaternion.Euler(-90, 0, 0);
         PlayerInput.Instance.OnJumped += Jump;
     }
 
@@ -89,5 +93,12 @@ public class PlayerMovement : MonoBehaviour
         PlayerInput.Instance.OnJumped -= Jump;
     }
 
+    /// <summary>
+    /// Callback to draw gizmos that are pickable and always drawn.
+    /// </summary>
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(groundCheckTransform.position,groundCheckRadius);
+    }
 
 }
