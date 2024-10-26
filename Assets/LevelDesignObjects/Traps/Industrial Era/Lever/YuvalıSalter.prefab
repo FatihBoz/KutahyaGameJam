@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6991125597455504042}
   - component: {fileID: 1967550836293839098}
   - component: {fileID: 8872031306248277517}
+  - component: {fileID: 3553706022184721805}
   m_Layer: 0
   m_Name: "Yuval\u0131Salter"
   m_TagString: Untagged
@@ -71,6 +72,30 @@ MonoBehaviour:
   objectsToDestroy:
   - {fileID: 0}
   leverPullText: {fileID: 7916575158073114585, guid: 405e5e414aec87d4b9aa1d47c1b1b080, type: 3}
+  targetAngle: 60
+  rotateDuration: 0.75
+--- !u!95 &3553706022184721805
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793384905539081897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 584a04e7d5fe5a54ab9dcb7d897a252b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &696728900758299769
 PrefabInstance:
   m_ObjectHideFlags: 0
