@@ -1,47 +1,72 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpearTrap : MonoBehaviour
+public class SpearTrap : MovingTrap
 {
+    [SerializeField] private float timeToTrigger = 1.0f;
 
-    [SerializeField] private float timeUntilTrapTriggered;
-    [SerializeField] private GameObject spears;
-    [SerializeField] private float spearsMoveAmount;
+    private bool canDamage;
+    private Coroutine activationCoroutine;
 
-    private Vector3 initialPos;
-    private Vector3 targetPos;
-
-    void ActivateTrap()
+    protected override void Update()
     {
-        targetPos = new Vector3(transform.position.x,transform.position.y + spearsMoveAmount,transform.position.y);
-        StartCoroutine(Move(initialPos,targetPos,1f,0f)); // spears to be appeared
-
-        StartCoroutine(Move(targetPos, initialPos, 1f, 4f));
+        return;
     }
 
-    private IEnumerator Move(Vector3 startPos, Vector3 endPos, float duration,float delay)
+    protected override IEnumerator ReturnToDefault(Vector3 targetPos)
     {
-        yield return new WaitForSeconds(delay);
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
-        {
-            spears.transform.position = Vector3.Lerp(startPos, endPos, elapsedTime/duration);
-            yield return null;
-        }
+        yield return base.ReturnToDefault(targetPos);
+        canDamage = false;
     }
 
-    private IEnumerator TriggerTrap(float timeToWait)
+    private void ActivateTrap()
     {
-        initialPos = transform.position;
-        yield return new WaitForSeconds(timeToWait);
+        
+        Vector3 targetPos = new(transform.position.x, transform.position.y + displacementAmount, transform.position.z);
+        StartCoroutine(ForwardMove(targetPos));
+        canDamage = true;
+    }
+
+    private IEnumerator DelayedActivation()
+    {
+        yield return new WaitForSeconds(timeToTrigger);
         ActivateTrap();
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(TriggerTrap(timeUntilTrapTriggered));
+        if (other.CompareTag("Player") && activationCoroutine == null)
+        {
+            activationCoroutine = StartCoroutine(DelayedActivation());
+            print("enter");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            print("exit");
+            ResetTrap();
+        }
+    }
+
+    private void ResetTrap()
+    {
+        canDamage = false;
+        if (activationCoroutine != null)
+        {
+            StopCoroutine(activationCoroutine);
+            activationCoroutine = null;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (canDamage && other.CompareTag("Player"))
+        {
+            Player.Instance.PlayerDied();
+            ResetTrap();
+        }
     }
 }

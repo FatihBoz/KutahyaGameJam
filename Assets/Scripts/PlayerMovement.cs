@@ -53,6 +53,17 @@ public class PlayerMovement : MonoBehaviour
         Vector2 moveDirection = movementSpeedMultiplier * inputMoveDirection;
 
         rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
+
+        Vector3 movement = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
+        if (movement != Vector3.zero)
+        {
+            //transform.forward = new Vector3(movement.x, 0, movement.z); // Hareket yönüne göre rotasyon ayarla
+
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movement.x, 0, movement.z));
+            transform.rotation = Quaternion.Euler(-90, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
+        }
+
+        rb.linearVelocity = movement;
     }
 
     private void FixedUpdate()
