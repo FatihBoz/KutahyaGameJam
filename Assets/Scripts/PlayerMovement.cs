@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
         if(CheckGround())
         {
             rb.AddForce(jumpSpeedMultiplier * Vector3.up, ForceMode.Impulse);
-            print("e jumpla sona geldik");
         }
     }
 
@@ -62,14 +61,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void OnEnable()
+    private void Start()
     {
-        //PlayerInput.Instance.OnJumped += Jump;
+        PlayerInput.Instance.OnJumped += Jump;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        //PlayerInput.Instance.OnJumped -= Jump;
+        PlayerInput.Instance.OnJumped -= Jump;
     }
 
 

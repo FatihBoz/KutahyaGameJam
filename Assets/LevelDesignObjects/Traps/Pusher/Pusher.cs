@@ -51,7 +51,27 @@ public class Pusher : MovingTrap
 
 
 
-    //private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
+    {
+        print(canPush);
+        if (!canPush)
+        {
+            return;
+        }
+
+        Vector3 dir = (transform.position - startPos).normalized;
+        Vector3 force = dir * pushForce;
+
+        if (other.TryGetComponent<Rigidbody>(out var rb) && other.CompareTag("Player"))
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.AddForce(force, ForceMode.VelocityChange);
+        }
+
+
+    }
+
+    //private void OnCollisionStay(Collision collision)
     //{
     //    if (!canPush)
     //    {
@@ -61,28 +81,9 @@ public class Pusher : MovingTrap
     //    Vector3 dir = (transform.position - startPos).normalized;
     //    Vector3 force = dir * pushForce;
 
-    //    if (other.TryGetComponent<Rigidbody>(out var rb))
-    //    {
-    //        rb.linearVelocity = Vector3.zero;
-    //        rb.AddForce(force, ForceMode.Impulse);
-    //    }
-
-        
+    //    collision.rigidbody.linearVelocity = Vector3.zero;
+    //    collision.rigidbody.AddForce(force,ForceMode.Impulse);
     //}
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (!canPush)
-        {
-            return;
-        }
-
-        Vector3 dir = (transform.position - startPos).normalized;
-        Vector3 force = dir * pushForce;
-
-        collision.rigidbody.linearVelocity = Vector3.zero;
-        collision.rigidbody.AddForce(force,ForceMode.Impulse);
-    }
 
 
 }
