@@ -228,6 +228,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pusher
       objectReference: {fileID: 0}
+    - target: {fileID: 7500186789308876901, guid: 770a706459de2a34e90f976c9825f855, type: 3}
+      propertyPath: pushForce
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
