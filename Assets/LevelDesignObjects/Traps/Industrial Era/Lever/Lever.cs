@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,9 +8,11 @@ public class Lever : MonoBehaviour
     [SerializeField] private List<GameObject> objectsToDestroy;
     [SerializeField] private TextMeshProUGUI leverPullText;
 
+    private bool isPlayerInTrigger;
+    private static Canvas canvas;
     private TextMeshProUGUI text;
 
-    private static Canvas canvas;
+    bool isPulled;
 
     private void Awake()
     {
@@ -20,29 +23,62 @@ public class Lever : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
+
+    void MakeTextVisible()
     {
         if (text == null)
         {
             text = Instantiate(leverPullText, canvas.transform);
         }
-
         text.gameObject.SetActive(true);
+    }
 
-        if (Input.GetKeyDown(KeyCode.E))
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isPulled) return;
+
+        MakeTextVisible();
+        isPlayerInTrigger = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        MakeTextInvisible();
+        isPlayerInTrigger = false;
+    }
+
+    void MakeTextInvisible()
+    {
+        if (text.gameObject.activeInHierarchy)
+        {
+            text.gameObject.SetActive(false);
+        }
+    }
+
+
+
+    private void PullLever()
+    {
+        if (isPlayerInTrigger && !isPulled)
         {
             foreach (GameObject obj in objectsToDestroy)
             {
                 obj.SetActive(false);
             }
             text.gameObject.SetActive(false);
+            isPulled = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void Start()
     {
-        text.gameObject.SetActive(false);
+        PlayerInput.Instance.OnInteracted += PullLever;
     }
 
+    private void OnDestroy()
+    {
+        PlayerInput.Instance.OnInteracted -= PullLever;
+    }
 
 }

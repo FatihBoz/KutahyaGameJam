@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6991125597455504042}
+  - component: {fileID: 1967550836293839098}
+  - component: {fileID: 8872031306248277517}
   m_Layer: 0
   m_Name: "Yuval\u0131Salter"
   m_TagString: Untagged
@@ -33,6 +35,42 @@ Transform:
   - {fileID: 789767103100151886}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1967550836293839098
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793384905539081897}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.1973572, y: 0.9681492, z: 2.340767}
+  m_Center: {x: 0.017288208, y: 0.17190552, z: -0.28723526}
+--- !u!114 &8872031306248277517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793384905539081897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c9aa0b480b26447b3dcb886ed2c7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToDestroy:
+  - {fileID: 0}
+  leverPullText: {fileID: 7916575158073114585, guid: 405e5e414aec87d4b9aa1d47c1b1b080, type: 3}
 --- !u!1001 &696728900758299769
 PrefabInstance:
   m_ObjectHideFlags: 0

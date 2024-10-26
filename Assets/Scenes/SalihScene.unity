@@ -306,6 +306,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ee7e0af3fce95347959fc5c67aa1d21, type: 3}
+--- !u!1 &439874338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 250696419606068775, guid: 968ada579fbe1f34aa4a90ddd544a27b, type: 3}
+  m_PrefabInstance: {fileID: 1150095487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &672388780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -760,6 +765,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1967550836293839098, guid: 62da192e95c402243b91177c5f5d5f04, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2961206
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967550836293839098, guid: 62da192e95c402243b91177c5f5d5f04, type: 3}
+      propertyPath: m_Center.x
+      value: 0.017288202
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967550836293839098, guid: 62da192e95c402243b91177c5f5d5f04, type: 3}
+      propertyPath: m_Center.y
+      value: 0.007919788
+      objectReference: {fileID: 0}
     - target: {fileID: 2793384905539081897, guid: 62da192e95c402243b91177c5f5d5f04, type: 3}
       propertyPath: m_Name
       value: "Yuval\u0131Salter"
@@ -804,6 +821,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8872031306248277517, guid: 62da192e95c402243b91177c5f5d5f04, type: 3}
+      propertyPath: 'objectsToDestroy.Array.data[0]'
+      value: 
+      objectReference: {fileID: 439874338}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
