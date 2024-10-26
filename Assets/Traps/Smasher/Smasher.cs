@@ -46,6 +46,11 @@ public class Smasher : MovingTrap
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!canSmash)
+        {
+            return;
+        }
+
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);

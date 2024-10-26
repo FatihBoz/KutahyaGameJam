@@ -64,12 +64,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerInput.Instance.OnJumped += Jump;
+        //PlayerInput.Instance.OnJumped += Jump;
     }
 
     private void OnDisable()
     {
-        PlayerInput.Instance.OnJumped -= Jump;
+        //PlayerInput.Instance.OnJumped -= Jump;
     }
 
 

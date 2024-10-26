@@ -33,13 +33,15 @@ public class MovingTrap : MonoBehaviour
             yield return null;
         }
 
+        yield return new WaitForSeconds(waitingTimeAfterPush);
         StartCoroutine(ReturnToDefault(startPos));
+
     }
 
 
     protected virtual IEnumerator ReturnToDefault(Vector3 targetPos)
     {
-        yield return new WaitForSeconds(waitingTimeAfterPush);
+
         isReturning = true;
         float timeElapsed = 0f;
         float returnDuration = actionDuration * returnTimeMultiplier;

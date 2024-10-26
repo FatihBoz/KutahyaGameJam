@@ -6,15 +6,13 @@ using UnityEngine;
 public class Pusher : MovingTrap
 {
     [SerializeField] private float pushForce;
-
-
     private bool canPush;
 
 
 
     private void Update()
     {
-        if (!canPush)
+        if (!canPush && !isReturning)
         {
             elapsedTimeAfterAction += Time.deltaTime;
 
@@ -29,20 +27,7 @@ public class Pusher : MovingTrap
             }
 
         }
-
-
-        //if (canPush)
-        //{
-        //    if (waitingTimeBetweenPushAndPull >= waitingTimeAfterPush)
-        //    {
-        //        StartCoroutine(ReturnToDefault());
-        //        waitingTimeBetweenPushAndPull = 0;
-        //        return;
-        //    }
-        //    waitingTimeBetweenPushAndPull += Time.deltaTime;
-        //}
     }
-
 
 
     protected override IEnumerator ForwardMove(Vector3 targetPos)
@@ -65,21 +50,6 @@ public class Pusher : MovingTrap
     }
 
 
-    //private void OnCollisionStay(Collision collision)
-    //{
-
-    //    if (!canPush)
-    //    {
-    //        return;
-    //    }
-
-    //    Vector3 dir = (transform.position - startPos).normalized;
-    //    Vector3 force = dir * pushForce;
-    //    collision.rigidbody.linearVelocity = Vector3.zero;
-
-    //    collision.rigidbody.AddForce(force, ForceMode.Impulse);
-    //    //collision.rigidbody.linearVelocity = force;
-    //}
 
     private void OnTriggerStay(Collider other)
     {
