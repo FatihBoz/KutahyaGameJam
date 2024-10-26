@@ -1,16 +1,11 @@
 using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
-using UnityEngine.InputSystem;
+
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent (typeof(PlayerInput))]
 public class PlayerMovement : MonoBehaviour
 {
-    private bool canJump;
-    private Rigidbody rb;
     [SerializeField] private float movementSpeedMultiplier;
     [SerializeField] private float jumpSpeedMultiplier;
     [SerializeField] private float fallMultiplier;
@@ -18,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rayLength = 0.5f;
     [SerializeField] private LayerMask groundLayer;
 
-
+    private PlayerInteract playerInteract;
+    private Rigidbody rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        playerInteract= GetComponent<PlayerInteract>();
     }
 
     private void Jump()
@@ -31,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
         if(CheckGround())
         {
             rb.AddForce(jumpSpeedMultiplier * Vector3.up, ForceMode.Impulse);
-            print("e jumpla sona geldik");
         }
     }
 
@@ -46,7 +42,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        Vector2 moveDirection = movementSpeedMultiplier * PlayerInput.Instance.GetMoveDirection();
+        Vector2 inputMoveDirection = PlayerInput.Instance.GetMoveDirection();
+        if (playerInteract.GetIsMovementLimited())
+        {
+            inputMoveDirection.x=0;
+        }
+
+        Vector2 moveDirection = movementSpeedMultiplier * inputMoveDirection;
 
         rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
     }
@@ -62,14 +64,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void OnEnable()
+    private void Start()
     {
-        //PlayerInput.Instance.OnJumped += Jump;
+        PlayerInput.Instance.OnJumped += Jump;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        //PlayerInput.Instance.OnJumped -= Jump;
+        PlayerInput.Instance.OnJumped -= Jump;
     }
 
 
