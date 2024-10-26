@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40cefa6a7f94cdc48af777e3988041ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2.83
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40cefa6a7f94cdc48af777e3988041ab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.8146129
+      value: 2.81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40cefa6a7f94cdc48af777e3988041ab, type: 3}
       propertyPath: m_LocalRotation.w
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 40cefa6a7f94cdc48af777e3988041ab, type: 3}
       propertyPath: m_Name
-      value: smasher
+      value: Smasher
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -103,6 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenActions: 3
   actionDuration: 0.15
-  displacementAmount: 3
+  displacementAmount: -4
   waitingTimeAfterPush: 2
   returnTimeMultiplier: 3
+  rayDistance: 10
+  layer:
+    serializedVersion: 2
+    m_Bits: 64

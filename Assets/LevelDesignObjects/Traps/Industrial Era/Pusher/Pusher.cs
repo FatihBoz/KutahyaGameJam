@@ -1,17 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public class Pusher : MovingTrap
 {
     [SerializeField] private float pushForce;
+    [SerializeField] private float rayDistance;
+    [SerializeField] private LayerMask layerMask;
     private bool canPush;
 
 
 
     protected override void Update()
     {
+        Ray ray = new(transform.position, Vector3.left);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, rayDistance, layerMask))
+        {
+            StopAllCoroutines();
+            return;
+        }
+
+
+
         if (idle)
         {
             elapsedTimeAfterAction += Time.deltaTime;
@@ -46,6 +59,7 @@ public class Pusher : MovingTrap
 
         canPush = false;
 
+        yield return new WaitForSeconds(waitingTimeAfterPush);
         StartCoroutine(ReturnToDefault(startPos));
     }
 
