@@ -63,7 +63,7 @@ public class PlayerInteract : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color=Color.red;
-        Gizmos.DrawLine(interactPoint.position,interactPoint.position-interactPoint.forward*rayLength);
+        Gizmos.DrawLine(interactPoint.position,interactPoint.position+interactPoint.forward*rayLength);
     }
 
 }
