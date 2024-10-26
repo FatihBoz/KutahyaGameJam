@@ -28,7 +28,6 @@ public class Smasher : MovingTrap
 
     private void OnCollisionEnter(Collision collision)
     {
-        print("CAnSMASH:" + canSmash);
         if (!canSmash)
         {
             return;
@@ -36,7 +35,6 @@ public class Smasher : MovingTrap
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            print("player öldü");
             Player.Instance.PlayerDied();
             //kan efekti belki
         }

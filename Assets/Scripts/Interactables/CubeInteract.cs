@@ -20,14 +20,14 @@ public class CubeInteract : MonoBehaviour, IInteractable
         {
             inInteracting=false;
             target=null;
-            playerInteract.SetIsMovementLimited(false);
+            playerInteract.SetIsHoldingObject(false);
             return;
         }
         
         // limit the player movement
-        playerInteract.SetIsMovementLimited(true);
+        playerInteract.SetIsHoldingObject(true);
         inInteracting=true;
-        target=playerInteract.transform;
+        target=playerInteract.GetInteractPoint();
     }
 
     public void Update()
@@ -35,7 +35,8 @@ public class CubeInteract : MonoBehaviour, IInteractable
 
         if (inInteracting && target!=null )
         {
-            targetPos = target.position + 2 * transform.forward;
+            targetPos = target.position + 2 * target.forward;
+            targetPos.y=transform.position.y;
             transform.position = Vector3.SmoothDamp(
             transform.position,
             targetPos,
@@ -44,5 +45,15 @@ public class CubeInteract : MonoBehaviour, IInteractable
             moveSpeed
         );
         }
-    } 
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
+    public void RotateObject(float angle)
+    {
+        transform.Rotate(new Vector3(0,angle,0));
+    }
 }

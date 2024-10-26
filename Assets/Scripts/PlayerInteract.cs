@@ -12,7 +12,7 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField]
     private LayerMask mask;
-    private bool limitLeftRightMovement;
+    private bool isHoldingObject;
 
     private IInteractable interactedObject;
     private bool isInteracting;
@@ -37,7 +37,6 @@ public class PlayerInteract : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(interactPoint.position,interactPoint.forward,out hit,rayLength,mask))
             {
-                Debug.Log("vurdum");
                 if (hit.collider.TryGetComponent(out IInteractable interactable))
                 {
                     interactable.Interact(this);   
@@ -47,14 +46,13 @@ public class PlayerInteract : MonoBehaviour
             }
         }
     }
-
-    public bool GetIsMovementLimited()
+    public bool GetIsHoldingObject()
     {
-        return limitLeftRightMovement;
+        return isHoldingObject;
     }
-    public void SetIsMovementLimited(bool isLimited)
+    public void SetIsHoldingObject(bool isHoldingObject)
     {
-        limitLeftRightMovement=isLimited;
+        this.isHoldingObject=isHoldingObject;
     }
 
     /// <summary>
@@ -63,7 +61,20 @@ public class PlayerInteract : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color=Color.red;
-        Gizmos.DrawLine(interactPoint.position,interactPoint.position-interactPoint.forward*rayLength);
+        Gizmos.DrawLine(interactPoint.position,interactPoint.position+interactPoint.forward*rayLength);
+    }
+
+    public Transform GetInteractPoint()
+    {
+        return interactPoint;
+    }
+    public Vector3 GetInteractedObjectPosition()
+    {
+        return interactedObject.GetPosition();
+    }
+    public void RotateInteractedObject(float angle)
+    {
+        interactedObject.RotateObject(angle);
     }
 
 }
