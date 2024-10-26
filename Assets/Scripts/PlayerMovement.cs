@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
-using UnityEngine.InputSystem;
+
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent (typeof(PlayerInput))]

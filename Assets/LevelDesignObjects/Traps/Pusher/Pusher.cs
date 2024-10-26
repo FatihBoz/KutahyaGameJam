@@ -18,14 +18,14 @@ public class Pusher : MovingTrap
 
             if (elapsedTimeAfterAction >= timeBetweenActions)
             {
-                Vector3 targetPos = new(startPos.x - displacementAmount, startPos.y, startPos.z);
+                // Objenin ileri yönünde displacementAmount kadar hedef pozisyonu hesapla
+                Vector3 targetPos = startPos - transform.right * displacementAmount;
 
                 StartCoroutine(ForwardMove(targetPos));
 
                 elapsedTimeAfterAction = 0;
                 return;
             }
-
         }
     }
 
@@ -53,7 +53,6 @@ public class Pusher : MovingTrap
 
     private void OnTriggerStay(Collider other)
     {
-        print(canPush);
         if (!canPush)
         {
             return;
