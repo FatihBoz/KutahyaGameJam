@@ -16,7 +16,7 @@ public class Pusher : MovingTrap
         startPos = transform.position;
     }
 
-    protected override void Update()
+    private void Update()
     {
         if (!canPush)
         {
