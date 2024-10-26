@@ -4,6 +4,12 @@ using UnityEngine.InputSystem;
 [RequireComponent (typeof(PlayerInput))]
 public class PlayerInteract : MonoBehaviour
 {
+    
+    [SerializeField]
+    private Transform interactPoint;
+     [SerializeField]
+    private float rayLength=20f;
+
     [SerializeField]
     private LayerMask mask;
     private bool limitLeftRightMovement;
@@ -29,9 +35,9 @@ public class PlayerInteract : MonoBehaviour
         else
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position,transform.forward,out hit,Mathf.Infinity,mask))
+            if (Physics.Raycast(interactPoint.position,interactPoint.forward,out hit,rayLength,mask))
             {
-
+                Debug.Log("vurdum");
                 if (hit.collider.TryGetComponent(out IInteractable interactable))
                 {
                     interactable.Interact(this);   
@@ -49,6 +55,15 @@ public class PlayerInteract : MonoBehaviour
     public void SetIsMovementLimited(bool isLimited)
     {
         limitLeftRightMovement=isLimited;
+    }
+
+    /// <summary>
+    /// Callback to draw gizmos only if the object is selected.
+    /// </summary>
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color=Color.red;
+        Gizmos.DrawLine(interactPoint.position,interactPoint.position-interactPoint.forward*rayLength);
     }
 
 }
