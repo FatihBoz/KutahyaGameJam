@@ -35,7 +35,7 @@ public class PlayerInteract : MonoBehaviour
         else
         {
             RaycastHit hit;
-            if (Physics.Raycast(interactPoint.position,interactPoint.forward,out hit,rayLenght,mask))
+            if (Physics.Raycast(interactPoint.position,interactPoint.forward,out hit,rayLength,mask))
             {
                 Debug.Log("vurdum");
                 if (hit.collider.TryGetComponent(out IInteractable interactable))
@@ -63,7 +63,7 @@ public class PlayerInteract : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color=Color.red;
-        Gizmos.DrawLine(interactPoint.position,interactPoint.position-interactPoint.forward*rayLenght);
+        Gizmos.DrawLine(interactPoint.position,interactPoint.position-interactPoint.forward*rayLength);
     }
 
 }
