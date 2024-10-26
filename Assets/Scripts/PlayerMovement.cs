@@ -18,11 +18,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rayLength = 0.5f;
     [SerializeField] private LayerMask groundLayer;
 
-
+    private PlayerInteract playerInteract;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        playerInteract= GetComponent<PlayerInteract>();
     }
 
     private void Jump()
@@ -45,7 +46,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        Vector2 moveDirection = movementSpeedMultiplier * PlayerInput.Instance.GetMoveDirection();
+        Vector2 inputMoveDirection = PlayerInput.Instance.GetMoveDirection();
+        if (playerInteract.GetIsMovementLimited())
+        {
+            inputMoveDirection.x=0;
+        }
+
+        Vector2 moveDirection = movementSpeedMultiplier * inputMoveDirection;
 
         rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
     }
