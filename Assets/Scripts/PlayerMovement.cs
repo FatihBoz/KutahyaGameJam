@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInteract playerInteract;
     private Rigidbody rb;
 
+
+    private Camera camera;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -78,21 +80,31 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("inputY",inputMoveDirection.y);
 
         Vector2 moveDirection = movementSpeedMultiplier * inputMoveDirection;
- 
-        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
+        
+        Vector3 cameraForward= camera.transform.forward;
+        Vector3 cameraRight= camera.transform.right;
+
+        cameraForward.y=0;
+        cameraRight.y=0;
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        Vector3 fullMovement=cameraForward*moveDirection.y+cameraRight*moveDirection.x;    
+        
+        rb.linearVelocity = new Vector3(fullMovement.x,rb.linearVelocity.y,fullMovement.z);
 
         Vector3 movement = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.y);
         if (movement.x!=0 || movement.z!=0)
         {
             animator.SetBool("isMoving",true);
             //transform.forward = new Vector3(movement.x, 0, movement.z); // Hareket y�n�ne g�re rotasyon ayarla
-            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(movement.x, 0, movement.z));
+            Quaternion targetRotation = Quaternion.LookRotation(fullMovement);
             transform.rotation = Quaternion.Euler(-90, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
         }
         else{
             animator.SetBool("isMoving",false);
         }
-        rb.linearVelocity = movement;
+       // rb.linearVelocity = movement;
         
         }
     }
@@ -113,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        camera=Camera.main;
         transform.rotation = Quaternion.Euler(-90, 0, 0);
         PlayerInput.Instance.OnJumped += Jump;
     }
