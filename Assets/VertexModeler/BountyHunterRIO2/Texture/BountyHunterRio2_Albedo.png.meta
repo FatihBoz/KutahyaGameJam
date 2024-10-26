@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6a8dd7c663aaa28458f40cc0af051943
+guid: 8cc6ed93884cd8142bb8ab7a6dd53bb9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,5 +117,5 @@ AssetOrigin:
   productId: 287264
   packageName: Lowpoly BountyHunter RIO 2
   packageVersion: 1.1
-  assetPath: Assets/VertexModeler/BountyHunterRIO2/Texture/BountyHunterRio2_Mask.png
+  assetPath: Assets/VertexModeler/BountyHunterRIO2/Texture/BountyHunterRio2_Albedo.png
   uploadId: 693096

@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 5acc945ea2ceca04990f86bcf1496541
+guid: b4a99393e2637c245aa8b3b2a10f64e3
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 11400000
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 287264
   packageName: Lowpoly BountyHunter RIO 2
   packageVersion: 1.1
-  assetPath: Assets/VertexModeler/BountyHunterRIO2/Scene/BountyHunterSample/GlobalVolumeProfile.asset
+  assetPath: Assets/VertexModeler/BountyHunterRIO2/Material/Mat_BountyHunter_RIO.mat
   uploadId: 693096
