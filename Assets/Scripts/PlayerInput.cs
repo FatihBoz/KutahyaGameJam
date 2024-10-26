@@ -26,6 +26,7 @@ public class PlayerInput : MonoBehaviour
     private void Jump(InputAction.CallbackContext context)
     {
         OnJumped?.Invoke();
+        print("zýpla");
     }
     public Vector2 GetMoveDirection()
     {

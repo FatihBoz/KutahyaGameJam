@@ -10,7 +10,7 @@ public class PlayerInteract : MonoBehaviour
     private bool limitLeftRightMovement;
     void Start()
     {
-        PlayerInput.Instance.GetPlayerController().CharacterMovement.Interact.performed += OnInteractPerformed;       
+        //PlayerInput.Instance.GetPlayerController().CharacterMovement.Interact.performed += OnInteractPerformed;       
     }
     void OnInteractPerformed(InputAction.CallbackContext context)
     {

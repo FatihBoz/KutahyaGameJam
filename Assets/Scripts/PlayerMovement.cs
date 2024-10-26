@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
@@ -26,9 +27,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        print(CheckGround());
         if(CheckGround())
         {
             rb.AddForce(jumpSpeedMultiplier * Vector3.up, ForceMode.Impulse);
+            print("e jumpla sona geldik");
         }
     }
 
@@ -58,14 +61,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     private void OnEnable()
     {
-        PlayerInput.Instance.OnJumped += Jump;
+        //PlayerInput.Instance.OnJumped += Jump;
     }
 
     private void OnDisable()
     {
-        PlayerInput.Instance.OnJumped -= Jump;
+        //PlayerInput.Instance.OnJumped -= Jump;
     }
 
 
