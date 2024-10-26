@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 582810763134c6c4bb64c294851ad1d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.07
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 582810763134c6c4bb64c294851ad1d3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenActions: 3
   actionDuration: 0.15
-  displacementAmount: 3
+  displacementAmount: 3.5
   waitingTimeAfterPush: 2
   returnTimeMultiplier: 3
 --- !u!65 &5353827292714177408
