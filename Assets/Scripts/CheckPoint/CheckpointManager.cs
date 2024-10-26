@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
@@ -27,15 +28,18 @@ public class CheckpointManager : MonoBehaviour
     private void OnDisable() {
         Player.Instance.OnPlayerDied-=SpawnPlayer;
     }
-    private void SpawnPlayer()
+    private void SpawnPlayer(float delay)
     {
-        Debug.Log("spawnlandi");
+       StartCoroutine(spawn(delay));
+    }
+    private IEnumerator spawn(float delay)
+    {
         Player.Instance.OnPlayerDied -= SpawnPlayer;
+        yield return new WaitForSeconds(delay);
+         Debug.Log("spawnlandi");
         GameObject player = Instantiate(playerPrefab);
         player.transform.position = checkpointLoc;
         Player.Instance.OnPlayerDied += SpawnPlayer;
-
     }
-
 
 }   
