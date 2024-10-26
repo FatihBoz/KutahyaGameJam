@@ -843,7 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707595d9c0091d0408f6c28ed524b213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10.95
   smoothTime: 0.005
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
