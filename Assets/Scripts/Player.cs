@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player Instance;
-    public Action OnPlayerDied;
+    public Action<float> OnPlayerDied;
 
     private void Awake()
     {
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     public void PlayerDied(float delay = 0)
     {
-        OnPlayerDied?.Invoke();
+        OnPlayerDied?.Invoke(delay);
         Destroy(gameObject, delay);
     }
 }

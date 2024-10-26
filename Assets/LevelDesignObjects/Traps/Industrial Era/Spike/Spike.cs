@@ -8,7 +8,7 @@ public class Spike : MovingTrap
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
+            Player.Instance.PlayerDied();
             //kan efekti belki
         }
     }
