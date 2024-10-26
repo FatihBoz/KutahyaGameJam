@@ -4,17 +4,40 @@ public class Arrow : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float selfDestroyTime;
+    [SerializeField] private float timeBetweenAttacks;
+
+    private float elapsedTime;
+    private bool canMove;
+    private Vector3 startPos;
 
     private void Start()
     {
-        Destroy(this.gameObject,selfDestroyTime);
+        elapsedTime = timeBetweenAttacks;
+        startPos = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+
         transform.position -= moveSpeed * Time.deltaTime * Vector3.right;
+
+        elapsedTime += Time.deltaTime;
+
+        if (elapsedTime >= selfDestroyTime)
+        {
+            Invoke(nameof(SetInactive), selfDestroyTime);
+            elapsedTime = 0;
+        }
     }
+
+    void SetInactive()
+    {
+        canMove = false;
+        transform.position = startPos;
+        ArrowThrower.Instance.MakeActiveWithDelay(this.gameObject, timeBetweenAttacks);
+        this.gameObject.SetActive(false);
+    }
+
 
 
     private void OnCollisionEnter(Collision collision)
