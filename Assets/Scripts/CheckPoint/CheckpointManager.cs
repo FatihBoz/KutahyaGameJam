@@ -13,7 +13,7 @@ public class CheckpointManager : MonoBehaviour
     private void Start()
     {
         checkpointLoc = transform.position;
-        Player.Instance.OnPlayerDied+=SpawnPlayer;
+        Player.Instance.OnPlayerDied += SpawnPlayer;
     }
     public void SetCheckpoint(Vector3 position)
     {
@@ -30,8 +30,11 @@ public class CheckpointManager : MonoBehaviour
     private void SpawnPlayer()
     {
         Debug.Log("spawnlandi");
+        Player.Instance.OnPlayerDied -= SpawnPlayer;
         GameObject player = Instantiate(playerPrefab);
         player.transform.position = checkpointLoc;
+        Player.Instance.OnPlayerDied += SpawnPlayer;
+
     }
 
 
