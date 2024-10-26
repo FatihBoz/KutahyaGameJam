@@ -23,7 +23,7 @@ public class Arrow : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            Player.Instance.PlayerDied();
         }
     }
 }

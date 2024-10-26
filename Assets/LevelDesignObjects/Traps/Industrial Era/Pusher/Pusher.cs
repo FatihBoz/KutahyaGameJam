@@ -65,6 +65,7 @@ public class Pusher : MovingTrap
         {
             rb.linearVelocity = Vector3.zero;
             rb.AddForce(force, ForceMode.VelocityChange);
+            Player.Instance.PlayerDied(2f);
         }
 
 

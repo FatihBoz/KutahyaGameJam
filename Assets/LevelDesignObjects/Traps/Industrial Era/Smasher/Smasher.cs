@@ -35,7 +35,7 @@ public class Smasher : MovingTrap
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            Player.Instance.PlayerDied();
             //kan efekti belki
         }
     }

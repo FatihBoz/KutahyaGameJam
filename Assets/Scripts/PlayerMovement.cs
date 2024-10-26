@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -5,8 +6,6 @@ using UnityEngine;
 [RequireComponent (typeof(PlayerInput))]
 public class PlayerMovement : MonoBehaviour
 {
-    private bool canJump;
-    private Rigidbody rb;
     [SerializeField] private float movementSpeedMultiplier;
     [SerializeField] private float jumpSpeedMultiplier;
     [SerializeField] private float fallMultiplier;
@@ -15,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private PlayerInteract playerInteract;
+    private Rigidbody rb;
 
     private void Awake()
     {
