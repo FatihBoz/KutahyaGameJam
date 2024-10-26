@@ -13,9 +13,9 @@ public class Rock : MonoBehaviour
     {
         startPos=transform.position;
         time=Time.time;
-        throwDirection=Vector3.forward;
+        throwDirection=transform.forward;
         rb=GetComponent<Rigidbody>();    
-        rb.AddForce(moveSpeed*transform.forward);
+        rb.AddForce(moveSpeed*throwDirection);
         rb.AddTorque(Vector3.right*rollForce);
     }
     void Update()
@@ -31,7 +31,7 @@ public class Rock : MonoBehaviour
             time=Time.time;
         }
     }
-    
+
     public void SetThrowDirection(Vector3 throwDirection)
     {
         this.throwDirection=throwDirection;
