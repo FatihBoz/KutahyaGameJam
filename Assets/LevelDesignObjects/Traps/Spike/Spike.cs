@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class Spike : MonoBehaviour
+public class Spike : MovingTrap
 {
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Die");
+            Destroy(other.gameObject);
+            //kan efekti belki
         }
     }
 }

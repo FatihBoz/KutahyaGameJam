@@ -12,16 +12,37 @@ public class MovingTrap : MonoBehaviour
 
     protected float elapsedTimeAfterFirstMove = 0f;
     protected Vector3 startPos;
-    protected bool isReturning;
+    protected bool idle;
     protected float elapsedTimeAfterAction = 0f;
 
     private void Start()
     {
         startPos = transform.position;
+        idle = true;
+    }
+
+    protected virtual void Update()
+    {
+        if (idle)
+        {
+            elapsedTimeAfterAction += Time.deltaTime;
+
+            if (elapsedTimeAfterAction >= timeBetweenActions)
+            {
+                Vector3 targetPos = new(startPos.x, startPos.y - displacementAmount, startPos.z);
+
+                StartCoroutine(ForwardMove(targetPos));
+
+                elapsedTimeAfterAction = 0;
+                return;
+            }
+        }
     }
 
     protected virtual IEnumerator ForwardMove(Vector3 targetPos)
     {
+
+        idle = false;
         float timeElapsed = 0f;
 
 
@@ -41,8 +62,6 @@ public class MovingTrap : MonoBehaviour
 
     protected virtual IEnumerator ReturnToDefault(Vector3 targetPos)
     {
-
-        isReturning = true;
         float timeElapsed = 0f;
         float returnDuration = actionDuration * returnTimeMultiplier;
 
@@ -52,8 +71,8 @@ public class MovingTrap : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        isReturning = false;
 
+        idle = true;
     }
 
 
