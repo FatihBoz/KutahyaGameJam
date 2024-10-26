@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
@@ -57,6 +58,22 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity += (fallMultiplier - 1) * Physics.gravity.y * Time.deltaTime * Vector3.up;
         }
     }
+
+    //public void KnockBack(Vector3 dir, float duration)
+    //{
+
+    //}
+
+    public IEnumerator KnockBack(Vector3 targetPos,float duration)
+    {
+        float timeElapsed = 0;
+
+        while (timeElapsed < duration)
+        {
+            transform.position = Vector3.Lerp(transform.position, targetPos, timeElapsed / duration);
+            yield return null;
+        }
+    }   
 
     private void OnEnable()
     {

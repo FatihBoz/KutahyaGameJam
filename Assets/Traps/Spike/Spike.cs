@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Sprite : MonoBehaviour
+public class Spike : MonoBehaviour
 {
 
     private bool isActivated = false;
