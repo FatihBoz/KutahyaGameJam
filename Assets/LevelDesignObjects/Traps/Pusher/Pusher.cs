@@ -10,9 +10,9 @@ public class Pusher : MovingTrap
 
 
 
-    private void Update()
+    protected override void Update()
     {
-        if (!canPush && !isReturning)
+        if (idle)
         {
             elapsedTimeAfterAction += Time.deltaTime;
 
@@ -51,7 +51,26 @@ public class Pusher : MovingTrap
 
 
 
-    private void OnTriggerStay(Collider other)
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (!canPush)
+    //    {
+    //        return;
+    //    }
+
+    //    Vector3 dir = (transform.position - startPos).normalized;
+    //    Vector3 force = dir * pushForce;
+
+    //    if (other.TryGetComponent<Rigidbody>(out var rb))
+    //    {
+    //        rb.linearVelocity = Vector3.zero;
+    //        rb.AddForce(force, ForceMode.Impulse);
+    //    }
+
+        
+    //}
+
+    private void OnCollisionStay(Collision collision)
     {
         if (!canPush)
         {
@@ -61,13 +80,8 @@ public class Pusher : MovingTrap
         Vector3 dir = (transform.position - startPos).normalized;
         Vector3 force = dir * pushForce;
 
-        if (other.TryGetComponent<Rigidbody>(out var rb))
-        {
-            rb.linearVelocity = Vector3.zero;
-            rb.AddForce(force, ForceMode.Impulse);
-        }
-
-        
+        collision.rigidbody.linearVelocity = Vector3.zero;
+        collision.rigidbody.AddForce(force,ForceMode.Impulse);
     }
 
 
