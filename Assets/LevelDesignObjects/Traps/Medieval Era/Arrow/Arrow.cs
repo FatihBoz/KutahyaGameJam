@@ -18,8 +18,9 @@ public class Arrow : MonoBehaviour
 
     private void Update()
     {
+        transform.position -= moveSpeed * Time.deltaTime * transform.right;
 
-        transform.position -= moveSpeed * Time.deltaTime * Vector3.right;
+        transform.rotation = Quaternion.Euler(90, transform.eulerAngles.y, transform.eulerAngles.z);
 
         elapsedTime += Time.deltaTime;
 

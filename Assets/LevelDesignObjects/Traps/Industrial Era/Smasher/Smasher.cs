@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -36,8 +37,6 @@ public class Smasher : MovingTrap
 
     protected override IEnumerator ForwardMove(Vector3 targetPos)
     {
-        canSmash = true;
-
         float timeElapsed = 0f;
         while (timeElapsed < actionDuration)
         {
@@ -46,11 +45,15 @@ public class Smasher : MovingTrap
 
             yield return null;
         }
-
-        canSmash = false;
-
         yield return new WaitForSeconds(waitingTimeAfterPush);
         StartCoroutine(ReturnToDefault(startPos));
+    }
+
+    protected override IEnumerator ReturnToDefault(Vector3 targetPos)
+    {
+        canSmash = true;
+        yield return base.ReturnToDefault(targetPos); // `yield return` kullanarak IEnumerator tamamlanana kadar bekle
+        canSmash = false;
     }
 
 

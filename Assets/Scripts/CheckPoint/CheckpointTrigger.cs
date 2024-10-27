@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CheckpointTrigger : MonoBehaviour
 {
+    [SerializeField]
+    private int checkpointLevel=0;
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
     /// </summary>
@@ -10,7 +12,7 @@ public class CheckpointTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            CheckpointManager.Instance.SetCheckpoint(transform.position);
+            CheckpointManager.Instance.SetCheckpoint(transform.position,checkpointLevel);
         }
     }
 }

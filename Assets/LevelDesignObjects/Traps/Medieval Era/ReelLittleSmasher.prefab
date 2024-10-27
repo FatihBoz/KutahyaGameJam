@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.027607117, y: 0.027872657, z: 0.017834373}
-  m_Center: {x: 0.17973334, y: 0.016039964, z: 0.05332005}
+  m_Size: {x: 2.362929, y: 4.371229, z: 2.3656423}
+  m_Center: {x: -0.15188181, y: 0.1500616, z: -0.07568167}
 --- !u!114 &7968321285757705082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   displacementAmount: -3.5
   waitingTimeAfterPush: 2
   returnTimeMultiplier: 3
+  delayStartTime: 0
   rayDistance: 10
   layer:
     serializedVersion: 2

@@ -11,10 +11,9 @@ public class Player : MonoBehaviour
         Instance = this;
     }
 
-
     public void PlayerDied(float delay = 0)
     {
         OnPlayerDied?.Invoke(delay);
-        Destroy(gameObject, delay);
+        gameObject.SetActive(false);
     }
 }
