@@ -19,11 +19,11 @@ public class Optimization : MonoBehaviour
     private void OnDestroy()
     {
 
-        CheckpointManager.OnLevelChanged -= LevelChanged;
+       // CheckpointManager.OnLevelChanged -= LevelChanged;
     }
     private void Start()
     {
-        CheckpointManager.OnLevelChanged += LevelChanged;
+       // CheckpointManager.OnLevelChanged += LevelChanged;
     }
 
     public void UpdateFloors(int newLevel)
