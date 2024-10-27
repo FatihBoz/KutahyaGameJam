@@ -18,9 +18,7 @@ public class Arrow : MonoBehaviour
 
     private void Update()
     {
-
-        Vector3 forwardDirection = Quaternion.Euler(0, transform.eulerAngles.y, 0) * transform.forward;
-        transform.position -= moveSpeed * Time.deltaTime * forwardDirection;
+        transform.position -= moveSpeed * Time.deltaTime * transform.right;
 
         transform.rotation = Quaternion.Euler(90, transform.eulerAngles.y, transform.eulerAngles.z);
 
