@@ -8,6 +8,7 @@ public class MovingTrap : MonoBehaviour
     [SerializeField] protected float displacementAmount;
     [SerializeField] protected float waitingTimeAfterPush;
     [SerializeField] protected float returnTimeMultiplier;
+    [SerializeField] private float delayStartTime;
 
 
     protected float elapsedTimeAfterFirstMove = 0f;
@@ -18,6 +19,13 @@ public class MovingTrap : MonoBehaviour
     private void Start()
     {
         startPos = transform.position;
+        elapsedTimeAfterAction = timeBetweenActions;
+        Invoke(nameof(DelayStart),delayStartTime);
+        
+    }
+
+    void DelayStart()
+    {
         idle = true;
     }
 

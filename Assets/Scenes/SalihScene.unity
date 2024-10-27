@@ -438,6 +438,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 17926411388794131, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: rayDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 408821637558428024, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: rayDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699972720495408836, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 172.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617218598553815427, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: rayDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2911533005885971923, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 56.99166
@@ -478,6 +494,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3357941053785224255, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 172.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723496883071490718, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: displacementAmount
+      value: -0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723496883071490718, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: waitingTimeAfterPush
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4425481211493085861, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.24184479
@@ -506,9 +534,73 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5341290068726459738, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: displacementAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341290068726459738, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: timeBetweenActions
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341290068726459738, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: returnTimeMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341290068726459738, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: waitingTimeAfterPush
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5446248739463856951, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
       propertyPath: m_Name
       value: Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697381226345783321, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: pushForce
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697381226345783321, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: rayDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697381226345783321, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697381226345783321, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: displacementAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697381226345783321, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: timeBetweenActions
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819788620499466881, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 172.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489683766476408637, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: rayDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134181979147732422, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: rayDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158936503193064058, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 172.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382725352954784303, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: delayStartTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382725352954784303, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: waitingTimeAfterPush
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406425420371494417, guid: 62e933cc4f86932479ecc6bf72ae6d44, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 172.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
