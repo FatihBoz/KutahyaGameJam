@@ -402,6 +402,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 235795166}
+  traps:
+  - {fileID: 1600455785127394278}
+  - {fileID: 1600455785127394277}
+  maxLevel: 4
+  boundary: {fileID: 0}
 --- !u!4 &380957232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7032932594906562183, guid: 8d2eb68935e44d74e851ef9838aa8643, type: 3}
@@ -534,6 +539,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 258082232282125313, guid: ba42d27c6ae899440a80553cd39a6587, type: 3}
+      propertyPath: checkpointLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1709091546797073741, guid: ba42d27c6ae899440a80553cd39a6587, type: 3}
       propertyPath: m_Name
       value: CheckpointTrigger (1)
@@ -2126,6 +2135,16 @@ PrefabInstance:
       addedObject: {fileID: 974139481}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69f2321edcb5bf5499d383f329780600, type: 3}
+--- !u!1 &1600455785127394277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1147832977439570161, guid: 69f2321edcb5bf5499d383f329780600, type: 3}
+  m_PrefabInstance: {fileID: 1600455785127394276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1600455785127394278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5441689413700080639, guid: 69f2321edcb5bf5499d383f329780600, type: 3}
+  m_PrefabInstance: {fileID: 1600455785127394276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
