@@ -16,7 +16,7 @@ public class CubeInteract : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerInteract playerInteract)
     {
-        if (inInteracting)
+        if (inInteracting && target!=null)
         {
             inInteracting=false;
             target=null;
@@ -58,5 +58,11 @@ public class CubeInteract : MonoBehaviour, IInteractable
         float pastRotateZ=transform.rotation.z;
         transform.Rotate(new Vector3(0,angle,0));
         transform.rotation = Quaternion.Euler(pastRotateX,transform.rotation.y,pastRotateZ);
+    }
+
+    public void Reset()
+    {
+            inInteracting=false;
+            target=null;
     }
 }

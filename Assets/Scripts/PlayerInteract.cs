@@ -19,10 +19,15 @@ public class PlayerInteract : MonoBehaviour
     
     private void Start() {
         PlayerInput.Instance.OnInteracted += OnInteractPerformed;
+        Player.Instance.OnPlayerDied +=OnDied;
     }
     private void OnDestroy() {
         PlayerInput.Instance.OnInteracted-=OnInteractPerformed;
-        
+        Player.Instance.OnPlayerDied -=OnDied;
+    }
+    private void OnDied(float delay)
+    {
+        Reset();
     }
 
     public void OnInteractPerformed()
@@ -76,6 +81,16 @@ public class PlayerInteract : MonoBehaviour
     public void RotateInteractedObject(float angle)
     {
         interactedObject.RotateObject(angle);
+    }
+    public void Reset()
+    {
+                    isHoldingObject=false;
+                   isInteracting=false;
+                   if (interactedObject!=null)
+                   {
+                    interactedObject.Reset();
+                    interactedObject=null;
+                   }
     }
 
 }

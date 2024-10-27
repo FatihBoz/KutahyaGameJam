@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jump()
     {
-        if(CheckGround())
+        if(CheckGround() && !playerInteract.GetIsHoldingObject())
         {
             animator.SetTrigger("isJumping");
             rb.AddForce(jumpSpeedMultiplier * Vector3.up, ForceMode.Impulse);
