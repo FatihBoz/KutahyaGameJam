@@ -36,7 +36,7 @@ public class CheckpointManager : MonoBehaviour
 	{
 	item.SetActive(false);
 	}
-	if(traps[checkpointLevel]!=null)
+	if(traps.Length>checkpointLevel)
 	{
 	traps[checkpointLevel].SetActive(true);
 	}
