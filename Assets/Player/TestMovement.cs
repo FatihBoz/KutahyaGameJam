@@ -20,7 +20,7 @@ public class TestMovement : MonoBehaviour
             // Kamera yönünü almak
             Vector3 camForward = Camera.main.transform.forward;
             Vector3 camRight = Camera.main.transform.right;
-
+            
             // Y eksenini sýfýrlýyoruz ki karakter sadece x-z ekseninde hareket etsin
             camForward.y = 0;
             camRight.y = 0;
@@ -46,4 +46,8 @@ public class TestMovement : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
     }
+
+
+
+
 }
