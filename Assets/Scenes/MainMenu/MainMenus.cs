@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenus : MonoBehaviour
 {
-   void Play()
+   public void Play()
    {
         SceneManager.LoadScene(1);
    }
 
    
-   void Quit()
+   public void Quit()
    {
     Application.Quit();
    }
