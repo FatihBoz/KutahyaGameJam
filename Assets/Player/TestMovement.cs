@@ -1,34 +1,49 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TestMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public Transform cameraTransform;
+    public float speed = 5f;
+    private CharacterController controller;
+    private Vector2 moveInput;
 
-    void Update()
+    private void Start()
     {
-        // Yön girdilerini al
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        controller = GetComponent<CharacterController>();
+    }
 
-        // Kameranýn ileri ve sað yönünü al, y ekseninde hareketi sabitle
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
-        forward.y = 0f;
-        right.y = 0f;
-
-        // Hareket yönünü kameraya göre ayarla
-        Vector3 direction = (forward * vertical + right * horizontal).normalized;
-
-        // Yön girdisi varsa
-        if (direction.magnitude >= 0.1f)
+    // Update her karede çaðrýlýr
+    private void Update()
+    {
+        if (moveInput.sqrMagnitude > 0.01f)
         {
-            // Karakterin bakýþ yönünü hareket yönüne göre döndür
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(-90, targetAngle, 0);
+            // Kamera yönünü almak
+            Vector3 camForward = Camera.main.transform.forward;
+            Vector3 camRight = Camera.main.transform.right;
 
-            // Ýleri doðru hareket et
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            // Y eksenini sýfýrlýyoruz ki karakter sadece x-z ekseninde hareket etsin
+            camForward.y = 0;
+            camRight.y = 0;
+            camForward.Normalize();
+            camRight.Normalize();
+
+            // Input'u kameranýn yönüne göre dönüþtürmek
+            Vector3 moveDirection = (camForward * moveInput.y + camRight * moveInput.x).normalized;
+
+            // Karakteri hareket ettirmek
+            controller.Move(moveDirection * speed * Time.deltaTime);
+
+            // Karakterin yönünü hareket yönüne çeviriyoruz
+            if (moveDirection != Vector3.zero)
+            {
+                transform.forward = moveDirection;
+            }
         }
+    }
+
+    // Yeni Input System için Input Action baðlantýsý
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
     }
 }
