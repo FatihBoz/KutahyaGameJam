@@ -6,6 +6,7 @@ public class Arrow : MonoBehaviour
     [SerializeField] private float selfDestroyTime;
     [SerializeField] private float timeBetweenAttacks;
 
+
     private float elapsedTime;
     private bool canMove;
     private Vector3 startPos;
