@@ -17,7 +17,7 @@ public class SpearTrap : MovingTrap
     protected override IEnumerator ReturnToDefault(Vector3 targetPos)
     {
         yield return base.ReturnToDefault(targetPos);
-        canDamage = false; // Tuzaðýn geri döndüðünde hasar verememesi için kapatýyoruz
+        canDamage = false;
     }
 
     private void ActivateTrap()
@@ -54,7 +54,7 @@ public class SpearTrap : MovingTrap
     {
         if (other.CompareTag("Player"))
         {
-            ResetTrap(); // karakter çýktýðýnda tuzaðý sýfýrla
+            ResetTrap(); 
             canDamage = false;
         }
     }
@@ -64,7 +64,7 @@ public class SpearTrap : MovingTrap
         if (canDamage && other.CompareTag("Player"))
         {
             Player.Instance.PlayerDied();
-            ResetTrap(); // Karakter yok edildiðinde tuzaðý sýfýrla
+            ResetTrap();
         }
     }
 }
