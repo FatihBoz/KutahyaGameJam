@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    [SerializeField] private List<Transform> objectsToDestroy;
+    [SerializeField] protected Transform objectToMove;
     [SerializeField] private TextMeshProUGUI leverPullText;
     [SerializeField] private float targetAngle;
     [SerializeField] private float rotateDuration;
@@ -14,8 +13,8 @@ public class Lever : MonoBehaviour
     private static Canvas canvas;
     private TextMeshProUGUI text;
 
-    bool isPulled;
-    Animator animator;
+    public bool isPulled;
+    protected Animator animator;
 
     private void Awake()
     {
@@ -63,21 +62,20 @@ public class Lever : MonoBehaviour
 
 
 
-    private void PullLever()
+    protected virtual void PullLever()
     {
+        
         animator.SetBool("Pull", !isPulled);
+
         if (isPlayerInTrigger && !isPulled)
         {
-            foreach (Transform obj in objectsToDestroy)
-            {
-                StartCoroutine(Rotate(obj));
-            }
+            StartCoroutine(Rotate(objectToMove));
             text.gameObject.SetActive(false);
-            isPulled = true;
+            isPulled = !isPulled;
         }
     }
 
-    private IEnumerator Rotate(Transform t)
+    protected virtual IEnumerator Rotate(Transform t)
     {
         float startRotation = t.eulerAngles.y;
         float endRotation = startRotation + targetAngle;
