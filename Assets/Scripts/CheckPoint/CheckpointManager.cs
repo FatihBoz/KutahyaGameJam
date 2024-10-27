@@ -11,6 +11,9 @@ public class CheckpointManager : MonoBehaviour
     private Vector3 checkpointLoc;
     private bool hasCheckpoint = false;
     
+	[SerializeField]
+	public GameObject[] traps;
+
     [SerializeField]
     private int maxLevel=4;
     private int currentLevel;
@@ -29,6 +32,14 @@ public class CheckpointManager : MonoBehaviour
     }
     public void SetCheckpoint(Vector3 position,int checkpointLevel)
     {
+	foreach(var item in traps)
+	{
+	item.SetActive(false);
+	}
+	if(traps.Length>checkpointLevel)
+	{
+	traps[checkpointLevel].SetActive(true);
+	}
         currentLevel=checkpointLevel;
         if (currentLevel==maxLevel)
         {
