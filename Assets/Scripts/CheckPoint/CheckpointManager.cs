@@ -3,21 +3,37 @@ using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
 {
+
+
+
     public GameObject playerPrefab;
     public static CheckpointManager Instance; 
     private Vector3 checkpointLoc;
     private bool hasCheckpoint = false;
+    
+    [SerializeField]
+    private int maxLevel=4;
+    private int currentLevel;
+
+    [SerializeField]
+    private GameObject boundary;
     
     private void Awake() {
         Instance=this;
     }
     private void Start()
     {
+        currentLevel=0;
         checkpointLoc = transform.position;
         Player.Instance.OnPlayerDied += SpawnPlayer;
     }
-    public void SetCheckpoint(Vector3 position)
+    public void SetCheckpoint(Vector3 position,int checkpointLevel)
     {
+        currentLevel=checkpointLevel;
+        if (currentLevel==maxLevel)
+        {
+            Destroy(boundary);
+        }
         checkpointLoc=position;
         Debug.Log("Checkpoint "+checkpointLoc+" locaited");
     }

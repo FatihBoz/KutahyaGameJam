@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1560850714585302648}
   - component: {fileID: 1382511562726655576}
   m_Layer: 0
-  m_Name: BOUNDER(WILL DESTROY ON LAST LEVEL)
+  m_Name: BOUNDER(WILL BE DESTROY ON LAST LEVEL)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
