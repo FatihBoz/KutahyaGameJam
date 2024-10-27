@@ -37,7 +37,6 @@ public class Smasher : MovingTrap
     protected override IEnumerator ForwardMove(Vector3 targetPos)
     {
         canSmash = true;
-
         float timeElapsed = 0f;
         while (timeElapsed < actionDuration)
         {

@@ -45,10 +45,6 @@ public class MovingTrap : MonoBehaviour
                 return;
             }
         }
-        else
-        {
-            elapsedTimeAfterAction = 0;
-        }
     }
 
     protected virtual IEnumerator ForwardMove(Vector3 targetPos)

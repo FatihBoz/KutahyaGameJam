@@ -37,8 +37,8 @@ public class CheckpointManager : MonoBehaviour
         Player.Instance.OnPlayerDied -= SpawnPlayer;
         yield return new WaitForSeconds(delay);
          Debug.Log("spawnlandi");
-        GameObject player = Instantiate(playerPrefab);
-        player.transform.position = checkpointLoc;
+        playerPrefab.SetActive(true);
+        playerPrefab.transform.position = checkpointLoc;
         Player.Instance.OnPlayerDied += SpawnPlayer;
     }
 

@@ -83,12 +83,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfeb962d3ac9d04e9e402508418cca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenActions: 3
+  timeBetweenActions: 5
   actionDuration: 0.1
-  displacementAmount: 5
+  displacementAmount: 3
   waitingTimeAfterPush: 2
   returnTimeMultiplier: 5
+  delayStartTime: 0
   pushForce: 200
+  rayDistance: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &1173563241347893719
 BoxCollider:
   m_ObjectHideFlags: 0
