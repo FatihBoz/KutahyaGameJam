@@ -54,6 +54,9 @@ public class CubeInteract : MonoBehaviour, IInteractable
 
     public void RotateObject(float angle)
     {
+        float pastRotateX=transform.rotation.x;
+        float pastRotateZ=transform.rotation.z;
         transform.Rotate(new Vector3(0,angle,0));
+        transform.rotation = Quaternion.Euler(pastRotateX,transform.rotation.y,pastRotateZ);
     }
 }
