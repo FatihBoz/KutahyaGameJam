@@ -20,10 +20,11 @@ public class PlayerInteract : MonoBehaviour
     private void Start() {
         PlayerInput.Instance.OnInteracted += OnInteractPerformed;
     }
-    private void OnDisable() {
+    private void OnDestroy() {
         PlayerInput.Instance.OnInteracted-=OnInteractPerformed;
         
     }
+
     public void OnInteractPerformed()
     {
         if (isInteracting && interactedObject!=null)

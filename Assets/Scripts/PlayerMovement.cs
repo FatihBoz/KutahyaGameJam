@@ -129,10 +129,10 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(-90, 0, 0);
         PlayerInput.Instance.OnJumped += Jump;
     }
-
     private void OnDestroy()
     {
         PlayerInput.Instance.OnJumped -= Jump;
+
     }
 
     /// <summary>
