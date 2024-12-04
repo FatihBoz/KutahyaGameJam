@@ -2176,7 +2176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1174651766
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3565,63 +3565,6 @@ PrefabInstance:
       addedObject: {fileID: 974139481}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69f2321edcb5bf5499d383f329780600, type: 3}
---- !u!1001 &9017336958639921865
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20.787796
-      objectReference: {fileID: 0}
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 23.006392
-      objectReference: {fileID: 0}
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20.794827
-      objectReference: {fileID: 0}
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2328662608040552732, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906790310957911112, guid: e1b794107ab76754da802dde551ef728, type: 3}
-      propertyPath: m_Name
-      value: LastPuzzleCam
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e1b794107ab76754da802dde551ef728, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3643,4 +3586,3 @@ SceneRoots:
   - {fileID: 45109108}
   - {fileID: 1618908907}
   - {fileID: 2020165595}
-  - {fileID: 9017336958639921865}
