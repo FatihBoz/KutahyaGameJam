@@ -11,55 +11,35 @@ public class Pusher : MovingTrap
     private bool canPush;
 
 
+    protected override void Start()
+    {
+        base.Start();
+
+    }
 
     protected override void Update()
     {
         Ray ray = new(transform.position, Vector3.left);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, rayDistance, layerMask))
+        if (Physics.Raycast(ray, out _, rayDistance, layerMask))
         {
             StopAllCoroutines();
             return;
         }
 
-
-
-        if (idle)
-        {
-            elapsedTimeAfterAction += Time.deltaTime;
-
-            if (elapsedTimeAfterAction >= timeBetweenActions)
-            {
-                // Objenin ileri yönünde displacementAmount kadar hedef pozisyonu hesapla
-                Vector3 targetPos = startPos - transform.right * displacementAmount;
-
-                StartCoroutine(ForwardMove(targetPos));
-
-                elapsedTimeAfterAction = 0;
-                return;
-            }
-        }
+        base.Update();
     }
 
 
-    protected override IEnumerator ForwardMove(Vector3 targetPos)
+    protected override IEnumerator ForwardMove()
     {
         canPush = true;
-        float timeElapsed = 0f;
- 
+        idle = false;
 
-        while (timeElapsed < actionDuration)
-        {
-            transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed / actionDuration);
-            timeElapsed += Time.deltaTime;
+        SetAnimation(true);
 
-            yield return null;
-        }
-
+        yield return new WaitForSeconds(waitingTimeAfterPush + actionDuration);
         canPush = false;
-
-        yield return new WaitForSeconds(waitingTimeAfterPush);
-        StartCoroutine(ReturnToDefault(startPos));
+        StartCoroutine(ReturnToDefault());
     }
 
 
@@ -71,14 +51,9 @@ public class Pusher : MovingTrap
             return;
         }
 
-        Vector3 dir = (transform.position - startPos).normalized;
-        Vector3 force = dir * pushForce;
-
-        if (other.TryGetComponent<Rigidbody>(out var rb) && other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            rb.linearVelocity = Vector3.zero;
-            rb.AddForce(force, ForceMode.VelocityChange);
-            Player.Instance.PlayerDied(2f);
+            Player.Instance.PlayerDied();
             canPush = false;
         }
 

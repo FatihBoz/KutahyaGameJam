@@ -42,7 +42,7 @@ public class Lever : MonoBehaviour
     {
         if (isPulled) return;
 
-        MakeTextVisible();
+        //MakeTextVisible();
         isPlayerInTrigger = true;
     }
 
@@ -54,23 +54,21 @@ public class Lever : MonoBehaviour
 
     void MakeTextInvisible()
     {
-        if (text.gameObject.activeInHierarchy)
-        {
-            text.gameObject.SetActive(false);
-        }
+        //if (text.gameObject.activeInHierarchy)
+        //{
+        //    text.gameObject.SetActive(false);
+        //}
     }
 
 
 
     protected virtual void PullLever()
     {
-        
-        animator.SetBool("Pull", !isPulled);
-
         if (isPlayerInTrigger && !isPulled)
         {
+            animator.SetBool("Pull", !isPulled);
             StartCoroutine(Rotate(objectToMove));
-            text.gameObject.SetActive(false);
+            //text.gameObject.SetActive(false);
             isPulled = !isPulled;
         }
     }

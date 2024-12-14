@@ -4,28 +4,16 @@ using UnityEngine;
 public class SpearTrap : MovingTrap
 {
     [SerializeField] private float timeToTrigger = 1.0f;
-    [SerializeField] private float resetDelay = 1.0f; // Geri dönüþ süresi
-
     private bool canDamage;
-    private Coroutine activationCoroutine;
 
-    protected override void Update()
-    {
-        return;
-    }
+    protected override void Update() { }
 
-    protected override IEnumerator ReturnToDefault(Vector3 targetPos)
+    protected override IEnumerator ReturnToDefault()
     {
-        yield return base.ReturnToDefault(targetPos);
+        yield return base.ReturnToDefault();
         canDamage = false;
     }
 
-    private void ActivateTrap()
-    {
-        Vector3 targetPos = new(transform.position.x, transform.position.y + displacementAmount, transform.position.z);
-        StartCoroutine(ForwardMove(targetPos));
-        canDamage = true;
-    }
 
     private IEnumerator DelayedActivation()
     {
@@ -33,29 +21,19 @@ public class SpearTrap : MovingTrap
         ActivateTrap();
     }
 
-    private void ResetTrap()
+
+    private void ActivateTrap()
     {
-        if (activationCoroutine != null)
-        {
-            //StopCoroutine(activationCoroutine);
-            activationCoroutine = null;
-        }
+        StartCoroutine(ForwardMove());
+        canDamage = true;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && activationCoroutine == null && idle)
+        if (other.CompareTag("Player") && idle)
         {
-            activationCoroutine = StartCoroutine(DelayedActivation());
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            ResetTrap(); 
-            canDamage = false;
+            StartCoroutine(DelayedActivation());
         }
     }
 
@@ -64,7 +42,6 @@ public class SpearTrap : MovingTrap
         if (canDamage && other.CompareTag("Player"))
         {
             Player.Instance.PlayerDied();
-            ResetTrap();
         }
     }
 }

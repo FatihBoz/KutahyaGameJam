@@ -9,7 +9,6 @@ public class CheckpointManager : MonoBehaviour
     public GameObject playerPrefab;
     public static CheckpointManager Instance; 
     private Vector3 checkpointLoc;
-    private bool hasCheckpoint = false;
     
 	[SerializeField]
 	public GameObject[] traps;

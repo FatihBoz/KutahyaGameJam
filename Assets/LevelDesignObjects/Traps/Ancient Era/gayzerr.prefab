@@ -114,8 +114,8 @@ MonoBehaviour:
   waterDropPrefab: {fileID: 2946364531939712956, guid: 51b63780e4b98be42a5a4c7a9e22802e, type: 3}
   pointToShoot: {fileID: 1238255081759163467}
   pushForce: 20
-  timeBetweenAttacks: 4
-  prefabSelfDestroyTime: 0.5
+  timeBetweenAttacks: 2
+  prefabSelfDestroyTime: 0.35
 --- !u!4 &8697207556832174025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5af1b7fdf37f2d64bb7bed4aea2b3d3c, type: 3}

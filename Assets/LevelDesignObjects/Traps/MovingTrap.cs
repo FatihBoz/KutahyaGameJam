@@ -4,25 +4,31 @@ using UnityEngine;
 public class MovingTrap : MonoBehaviour
 {
     [SerializeField] protected float timeBetweenActions;
-    [SerializeField] protected float actionDuration;
-    [SerializeField] protected float displacementAmount;
     [SerializeField] protected float waitingTimeAfterPush;
     [SerializeField] protected float returnTimeMultiplier;
     [SerializeField] private float delayStartTime;
+    [SerializeField] protected float actionDuration = .1f;
 
-
-    protected float elapsedTimeAfterFirstMove = 0f;
-    protected Vector3 startPos;
+    protected bool firstMove;
     protected bool idle;
     protected float elapsedTimeAfterAction = 0f;
 
-    private void Start()
+    private Animator anim;
+
+
+    private const string animationName = "FirstMove";
+
+    private void Awake()
     {
-        startPos = transform.position;
+        anim = GetComponent<Animator>();
+    }
+
+    protected virtual void Start()
+    {
         elapsedTimeAfterAction = timeBetweenActions;
         Invoke(nameof(DelayStart),delayStartTime);
-        
     }
+
 
     void DelayStart()
     {
@@ -34,12 +40,9 @@ public class MovingTrap : MonoBehaviour
         if (idle)
         {
             elapsedTimeAfterAction += Time.deltaTime;
-
             if (elapsedTimeAfterAction >= timeBetweenActions)
             {
-                Vector3 targetPos = new(startPos.x, startPos.y - displacementAmount, startPos.z);
-
-                StartCoroutine(ForwardMove(targetPos));
+                StartCoroutine(ForwardMove());
 
                 elapsedTimeAfterAction = 0;
                 return;
@@ -47,40 +50,30 @@ public class MovingTrap : MonoBehaviour
         }
     }
 
-    protected virtual IEnumerator ForwardMove(Vector3 targetPos)
+    protected virtual IEnumerator ForwardMove()
     {
-
         idle = false;
-        float timeElapsed = 0f;
+        SetAnimation(true);
+        yield return new WaitForSeconds(waitingTimeAfterPush + actionDuration);
 
-
-        while (timeElapsed < actionDuration)
-        {
-            transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed / actionDuration);
-            timeElapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(waitingTimeAfterPush);
-        StartCoroutine(ReturnToDefault(startPos));
+        StartCoroutine(ReturnToDefault());
 
     }
 
 
-    protected virtual IEnumerator ReturnToDefault(Vector3 targetPos)
+    protected virtual IEnumerator ReturnToDefault()
     {
-        float timeElapsed = 0f;
-        float returnDuration = actionDuration * returnTimeMultiplier;
 
-        while (timeElapsed < returnDuration)
-        {
-            transform.position = Vector3.Lerp(transform.position, targetPos, timeElapsed / returnDuration);
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
+        SetAnimation(false);
+        yield return new WaitForSeconds(actionDuration * returnTimeMultiplier);
 
         idle = true;
+    }
+
+
+    protected void SetAnimation(bool FirstMove)
+    {
+        anim.SetBool(animationName, FirstMove);
     }
 
 
