@@ -16,6 +16,9 @@ public class ending : MonoBehaviour
         }
         if(FinalPuzzle.gameFinished)
         {
+            print("e bitmiþ bu");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             SceneManager.LoadScene("MainMenu");
         }
     }

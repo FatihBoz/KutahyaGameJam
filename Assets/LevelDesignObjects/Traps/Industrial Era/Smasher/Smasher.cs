@@ -51,7 +51,6 @@ public class Smasher : MovingTrap
 
     private void OnCollisionEnter(Collision collision)
     {
-        print(canSmash);
         if (!canSmash)
         {
             return;

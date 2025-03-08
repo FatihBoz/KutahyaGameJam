@@ -32,7 +32,7 @@ public class FinalPuzzle : MonoBehaviour
         if (renderer != null)
         {
             //renderer.material.color = Color.yellow;
-            renderer.material = material; // Highlight materyali ile deðiþtir
+            renderer.material = material;
         }
     }
 
@@ -61,20 +61,10 @@ public class FinalPuzzle : MonoBehaviour
 
     bool CheckRotation(Quaternion currentRotation, Quaternion targetRotation)
     {
-        // Ýki rotasyon arasýndaki açýyý hesapla
         float angle = Quaternion.Angle(currentRotation, targetRotation);
 
-        // Açýnýn 0 olup olmadýðýný kontrol et (belirli bir toleransla)
-        if (angle < 2f) // 0.01f gibi küçük bir tolerans belirleyebilirsin
-        {
-            //Debug.Log("Rotasyon hedefe çok yakýn.");
-            return true;
-        }
-        else
-        {
-            //Debug.Log("Rotasyon hedefe uzak.");
-            return false;
-        }
+
+        return (angle % 360) < 2f;
     }
 
     void RotateSelectedObject(float direction)

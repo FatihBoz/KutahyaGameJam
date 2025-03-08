@@ -45,7 +45,6 @@ public class CheckpointManager : MonoBehaviour
             Destroy(boundary);
         }
         checkpointLoc=position;
-        Debug.Log("Checkpoint "+checkpointLoc+" locaited");
     }
     public Vector3 GetCheckpointLocation()
     {
@@ -62,7 +61,7 @@ public class CheckpointManager : MonoBehaviour
     {
         Player.Instance.OnPlayerDied -= SpawnPlayer;
         yield return new WaitForSeconds(delay);
-         Debug.Log("spawnlandi");
+
         playerPrefab.transform.position = checkpointLoc;
         playerPrefab.SetActive(true);
         Player.Instance.OnPlayerDied += SpawnPlayer;

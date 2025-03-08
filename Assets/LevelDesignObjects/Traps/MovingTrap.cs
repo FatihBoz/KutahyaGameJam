@@ -45,6 +45,7 @@ public class MovingTrap : MonoBehaviour
                 StartCoroutine(ForwardMove());
 
                 elapsedTimeAfterAction = 0;
+                idle = false;
                 return;
             }
         }
@@ -55,7 +56,6 @@ public class MovingTrap : MonoBehaviour
         idle = false;
         SetAnimation(true);
         yield return new WaitForSeconds(waitingTimeAfterPush + actionDuration);
-
         StartCoroutine(ReturnToDefault());
 
     }
@@ -66,8 +66,9 @@ public class MovingTrap : MonoBehaviour
 
         SetAnimation(false);
         yield return new WaitForSeconds(actionDuration * returnTimeMultiplier);
-
         idle = true;
+        yield return new WaitForSeconds(0.1f);
+        print(idle);
     }
 
 
